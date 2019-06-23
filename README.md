@@ -4,7 +4,7 @@ Medyum Abla'nın da dediği gibi;
 
 - Medyum Abla'nın linki [Medium](https://medium.com/@fundakoca/zaman-y%C3%B6netimi-i%CC%87%C3%A7in-pomodoro-tekni%C4%9Fi-1fef1bc165d4 "Medium")
 
-Bilmiyorum masa üstü versiyonu var mı pek de araştırdığım söylenemez, benim gibi offline severler için kullanılabilir bir versiyon oldu diyeibliriz.
+Bilmiyorum masaüstü versiyonu var mı pek de araştırdığım söylenemez, benim gibi offline severler için kullanılabilir bir versiyon oldu diyeibliriz.
 
 - Build Edilmiş Versiyon
 
