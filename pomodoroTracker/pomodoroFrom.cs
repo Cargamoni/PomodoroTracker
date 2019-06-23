@@ -11,7 +11,7 @@ using System.Media;
 
 namespace pomodoroTracker
 {
-    public partial class Form1 : Form
+    public partial class pomodoroFrom : Form
     {
         pomodoroSettings ayarlar = new pomodoroSettings();
         SoundPlayer alarmSesi;
@@ -19,7 +19,7 @@ namespace pomodoroTracker
         int durumZaman = 0;
         bool isBreak = false;
         bool isLongBreak = false;
-        public Form1()
+        public pomodoroFrom()
         {
             //ilk açılıştaki varsayılan değerleri girmeyi sağlar.
             InitializeComponent();

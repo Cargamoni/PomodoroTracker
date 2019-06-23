@@ -1,6 +1,6 @@
 ﻿namespace pomodoroTracker
 {
-    partial class Form1
+    partial class pomodoroFrom
     {
         /// <summary>
         /// Required designer variable.
