@@ -30,11 +30,17 @@ Programlamada kullanılan programlama dili her ne kadar özgür olmayan bir prog
 
 GNU/Linux işletim sistemi yüklemeleri yaptırdıktan sonra;
 - Tüm projeyi indirin
+
 	-- Hepsine ihtiyacım yok diyorsanız aşağıdaki dosya ve klasörü indirin;
+	
 		. PomodoroTracker/pomodoroTracker/bin/Debug/sounds
+		
 		. PomodoroTracker/pomodoroTracker/bin/Debug/pomodoroTracker.exe
+		
 - Hepsini bir dizine çıkartın.
+
 - Çıkarttıktan sonra
+
 	-- Tüm projeyi indirenler;
 	
 		. pomodoroTracker/bin/Debug/ içerisine girin
