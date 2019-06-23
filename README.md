@@ -36,10 +36,17 @@ GNU/Linux işletim sistemi yüklemeleri yaptırdıktan sonra;
 - Hepsini bir dizine çıkartın.
 - Çıkarttıktan sonra
 	-- Tüm projeyi indirenler;
+	
 		. pomodoroTracker/bin/Debug/ içerisine girin
-		. `$ mono pomodoroTracker.exe` komutunu çalıştırın.
+		
+		. `$ mono pomodoroTracker.exe` komutunu çalıştırın
+		
 	-- Yukarıdaki dosya ve dizini indirdiyseniz, 
+	
 		. İndirdikleriniz bir klasör oluşturun (bari kendine has bir klasörü olsun değil mi (: )
-		. Oluşturduğunuz klasöre girin ve,
+		
+		. Oluşturduğunuz klasöre girin ve
+		
 		. `$ mono pomodoroTracker.exe` komutunu çalıştırın.
+		
 		
