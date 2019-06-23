@@ -25,3 +25,21 @@ Bu yöntem denenmedi ancak geri dönüşlere her zaman açığım (:
 Programlamada kullanılan programlama dili her ne kadar özgür olmayan bir programlama dili olsa da uygulamayı GNU Public License ile lisanslamak istedim, bundan bile güzel bir şey çıkarabilmek için.
 
 - Meraklısına [GNU](https://www.gnu.org/licenses/gpl-3.0.html "GNU")
+
+# Çalıştırmak İçin
+
+GNU/Linux işletim sistemi yüklemeleri yaptırdıktan sonra;
+- Tüm projeyi indirin
+	-- Hepsine ihtiyacım yok diyorsanız aşağıdaki dosya ve klasörü indirin;
+		. PomodoroTracker/pomodoroTracker/bin/Debug/sounds
+		. PomodoroTracker/pomodoroTracker/bin/Debug/pomodoroTracker.exe
+- Hepsini bir dizine çıkartın.
+- Çıkarttıktan sonra
+	-- Tüm projeyi indirenler;
+		. pomodoroTracker/bin/Debug/ içerisine girin
+		. `$ mono pomodoroTracker.exe` komutunu çalıştırın.
+	-- Yukarıdaki dosya ve dizini indirdiyseniz, 
+		. İndirdikleriniz bir klasör oluşturun (bari kendine has bir klasörü olsun değil mi (: )
+		. Oluşturduğunuz klasöre girin ve,
+		. `$ mono pomodoroTracker.exe` komutunu çalıştırın.
+		
