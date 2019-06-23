@@ -26,6 +26,10 @@ Programlamada kullanılan programlama dili her ne kadar özgür olmayan bir prog
 
 - Meraklısına [GNU](https://www.gnu.org/licenses/gpl-3.0.html "GNU")
 
+# Projeyi İndirmek İçin
+
+`$ git clone https://github.com/Cargamoni/PomodoroTracker.git`
+
 # Çalıştırmak İçin
 
 GNU/Linux işletim sistemi yüklemeleri yaptırdıktan sonra;

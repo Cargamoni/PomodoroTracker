@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using System.IO;
 
 namespace pomodoroTracker
 {
@@ -32,7 +33,7 @@ namespace pomodoroTracker
         {
             duzenleme();
         }
- 
+
         #region Component Düzenleyen Fonksiyon
         public void duzenleme()
         {
@@ -74,11 +75,11 @@ namespace pomodoroTracker
 
 
             // Combobox İçi Doldurma
-            if(comboBox1.Items.Count == 0)
-            { 
-                for(int i = 1; i <= 10; i++)
+            if (comboBox1.Items.Count == 0)
+            {
+                for (int i = 1; i <= 10; i++)
                 {
-                    if(i < 10)
+                    if (i < 10)
                         comboBox1.Items.Add("Alarm0" + i.ToString() + ".wav");
                     else
                         comboBox1.Items.Add("Alarm" + i.ToString() + ".wav");
@@ -93,7 +94,7 @@ namespace pomodoroTracker
         //Zamanlayıcı çalışıysa durdurur, çalışmıyorsa başlatır.
         public void timerStarter()
         {
-            
+
             if (timer1.Enabled)
             {
                 timer1.Enabled = false;
@@ -176,7 +177,7 @@ namespace pomodoroTracker
         }
 
         //Yapılacak ve yapılmış işleri diziye aktarır.
-        public void dataToArray()
+        public bool dataToArray()
         {
             if (yapilacakList.Items.Count != 0)
             {
@@ -185,23 +186,34 @@ namespace pomodoroTracker
                 {
                     data[i] = yapilacakList.Items[i].ToString();
                 }
-                ayarlar.exportData(data);
+                //ayarlar.exportData(data);
+                ayarlar.exportedData = data;
+                return true;
             }
+            else
+                return false;
         }
 
-        public void arrayToData()
+        public bool arrayToData()
         {
             string todaysData = DateTime.Today.ToShortDateString();
             todaysData = todaysData.Replace("/", ".");
             ayarlar.importData(todaysData);
-            if (ayarlar.importedData.Length != 0)
+            if (ayarlar.importedData != null && ayarlar.importedData.Length != 0)
             {
-                string[] data = ayarlar.importedData;
-                for (int i = 0; i <= ayarlar.importedData.Length - 1; i++)
+                if (ayarlar.importedData.Length != 0)
                 {
-                    yapilacakList.Items.Add(data[i].ToString());
+                    string[] data = ayarlar.importedData;
+                    for (int i = 0; i <= ayarlar.importedData.Length - 1; i++)
+                    {
+                        yapilacakList.Items.Add(data[i].ToString());
+                    }
                 }
+                return true;
             }
+            else
+                return false;
+
         }
         #endregion
         #region Evenets ButtonClick
@@ -270,7 +282,7 @@ namespace pomodoroTracker
             kalanZaman--;
             zamanLabel.Text = kalanZaman / 60 + ":" + ((kalanZaman % 60) >= 10 ? (kalanZaman % 60).ToString() : "0" + (kalanZaman % 60));
             if (kalanZaman <= 0)
-            { 
+            {
                 timer1.Enabled = false;
                 isBreak = !isBreak;
                 trackPomodoro();
@@ -283,7 +295,7 @@ namespace pomodoroTracker
             if (e.KeyChar == (char)Keys.Enter)
             {
                 if (textBox1.Text.Length != 0)
-                { 
+                {
                     yapilacakList.Items.Add(textBox1.Text);
                     textBox1.Clear();
                 }
@@ -301,7 +313,7 @@ namespace pomodoroTracker
             }
             yapilanYuzde();
         }
-     
+
         //Yapılmış listesindeki her bir elemana tıklayarak silme.
         private void yapilmisList_DoubleClick(object sender, EventArgs e)
         {
@@ -319,10 +331,10 @@ namespace pomodoroTracker
             textBox3.Text = ayarlar.shortBreakTime.ToString();
             textBox4.Text = ayarlar.longBreakTime.ToString();
             textBox5.Text = ayarlar.pomodoroCounter.ToString();
-            if(timer1.Enabled && tabControl1.SelectedIndex != 1)
+            if (timer1.Enabled && tabControl1.SelectedIndex != 1)
             {
                 DialogResult resetleme = MessageBox.Show("Süreniz hala çalışyor, ayarları kaydedip pomodoroyu sıfırlamak ister misiniz ?", "Çalışma Zamanı", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if(resetleme == DialogResult.Yes)
+                if (resetleme == DialogResult.Yes)
                 {
                     ayarlar.pomodoroTime = Convert.ToInt32(textBox2.Text);
                     ayarlar.shortBreakTime = Convert.ToInt32(textBox3.Text);
@@ -346,20 +358,45 @@ namespace pomodoroTracker
         }
         #endregion
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)      //Export Button
         {
             //ayarlar.exportData();
-            dataToArray();
+            if (dataToArray())
+            {
+                string todaysData = DateTime.Today.ToShortDateString();
+                todaysData = todaysData.Replace("/", ".");
+                if (!File.Exists("data-" + todaysData + ".xml"))
+                {
+                    ayarlar.adoptExportData(todaysData, ayarlar.exportedData);
+                }
+                else if (ayarlar.differentData())
+                {
+                    ayarlar.adoptExportData(todaysData, ayarlar.dataDifference);
+                }
+            }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)      //Import button
         {
             arrayToData();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            dataToArray();
+            if (dataToArray())
+            {
+                string todaysData = DateTime.Today.ToShortDateString();
+                todaysData = todaysData.Replace("/", ".");
+                if (!File.Exists("data-" + todaysData + ".xml"))
+                {
+                    ayarlar.adoptExportData(todaysData, ayarlar.exportedData);
+                }
+                else if (ayarlar.differentData())
+                {
+                    ayarlar.adoptExportData(todaysData, ayarlar.dataDifference);
+
+                }
+            }
         }
     }
 }

@@ -38,41 +38,41 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.yapilmisBox = new System.Windows.Forms.GroupBox();
+            this.yapilmisSil = new System.Windows.Forms.Button();
+            this.yapilmisList = new System.Windows.Forms.ListBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.yapilacakBox = new System.Windows.Forms.GroupBox();
+            this.yapilacakList = new System.Windows.Forms.ListBox();
             this.yapilacakEkle = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.yapilacakList = new System.Windows.Forms.ListBox();
-            this.yapilmisList = new System.Windows.Forms.ListBox();
-            this.yapilmisSil = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.importButton = new System.Windows.Forms.Button();
+            this.exportButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pomodoroBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.yapilmisBox.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.yapilacakBox.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -188,6 +188,42 @@
             this.yapilmisBox.TabStop = false;
             this.yapilmisBox.Text = "Yapılmışlar";
             // 
+            // yapilmisSil
+            // 
+            this.yapilmisSil.Location = new System.Drawing.Point(6, 391);
+            this.yapilmisSil.Name = "yapilmisSil";
+            this.yapilmisSil.Size = new System.Drawing.Size(441, 35);
+            this.yapilmisSil.TabIndex = 3;
+            this.yapilmisSil.Text = "Listeyi Temizle";
+            this.yapilmisSil.UseVisualStyleBackColor = true;
+            this.yapilmisSil.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // yapilmisList
+            // 
+            this.yapilmisList.ContextMenuStrip = this.contextMenuStrip1;
+            this.yapilmisList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yapilmisList.FormattingEnabled = true;
+            this.yapilmisList.ItemHeight = 24;
+            this.yapilmisList.Location = new System.Drawing.Point(6, 25);
+            this.yapilmisList.Name = "yapilmisList";
+            this.yapilmisList.Size = new System.Drawing.Size(441, 364);
+            this.yapilmisList.TabIndex = 3;
+            this.yapilmisList.DoubleClick += new System.EventHandler(this.yapilmisList_DoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(165, 22);
+            this.toolStripMenuItem1.Text = "Yapılacaklara Taşı";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(4, 292);
@@ -206,6 +242,17 @@
             this.yapilacakBox.TabIndex = 1;
             this.yapilacakBox.TabStop = false;
             this.yapilacakBox.Text = "Yapılacaklar";
+            // 
+            // yapilacakList
+            // 
+            this.yapilacakList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yapilacakList.FormattingEnabled = true;
+            this.yapilacakList.ItemHeight = 24;
+            this.yapilacakList.Location = new System.Drawing.Point(6, 25);
+            this.yapilacakList.Name = "yapilacakList";
+            this.yapilacakList.Size = new System.Drawing.Size(441, 364);
+            this.yapilacakList.TabIndex = 2;
+            this.yapilacakList.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // yapilacakEkle
             // 
@@ -248,90 +295,42 @@
             this.tabPage2.Text = "Ayarlar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // timer1
+            // label5
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(334, 273);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(141, 20);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Alarm Sesini Seçin";
             // 
-            // yapilacakList
+            // comboBox1
             // 
-            this.yapilacakList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yapilacakList.FormattingEnabled = true;
-            this.yapilacakList.ItemHeight = 24;
-            this.yapilacakList.Location = new System.Drawing.Point(6, 25);
-            this.yapilacakList.Name = "yapilacakList";
-            this.yapilacakList.Size = new System.Drawing.Size(441, 364);
-            this.yapilacakList.TabIndex = 2;
-            this.yapilacakList.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Location = new System.Drawing.Point(338, 296);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(438, 28);
+            this.comboBox1.TabIndex = 10;
             // 
-            // yapilmisList
+            // button2
             // 
-            this.yapilmisList.ContextMenuStrip = this.contextMenuStrip1;
-            this.yapilmisList.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.yapilmisList.FormattingEnabled = true;
-            this.yapilmisList.ItemHeight = 24;
-            this.yapilmisList.Location = new System.Drawing.Point(6, 25);
-            this.yapilmisList.Name = "yapilmisList";
-            this.yapilmisList.Size = new System.Drawing.Size(441, 364);
-            this.yapilmisList.TabIndex = 3;
-            this.yapilmisList.DoubleClick += new System.EventHandler(this.yapilmisList_DoubleClick);
+            this.button2.Location = new System.Drawing.Point(545, 357);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(263, 35);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Seçili Alarmı Çal ve Ayarla";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // yapilmisSil
+            // button1
             // 
-            this.yapilmisSil.Location = new System.Drawing.Point(6, 391);
-            this.yapilmisSil.Name = "yapilmisSil";
-            this.yapilmisSil.Size = new System.Drawing.Size(441, 35);
-            this.yapilmisSil.TabIndex = 3;
-            this.yapilmisSil.Text = "Listeyi Temizle";
-            this.yapilmisSil.UseVisualStyleBackColor = true;
-            this.yapilmisSil.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(338, 58);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(438, 26);
-            this.textBox2.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(338, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(438, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Pomodoro Zamanını Dakika Cinsinden Giriniz - Varsayılan: 25";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(338, 91);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(415, 20);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Kısa Ara Zamanını Dakika Cinsinden Giriniz - Varsayılan: 5";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(338, 114);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(438, 26);
-            this.textBox3.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(338, 151);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(432, 20);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Uzun Ara Zamanını Dakika Cinsinden Giriniz - Varsayılan: 30";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(338, 174);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(438, 26);
-            this.textBox4.TabIndex = 4;
+            this.button1.Location = new System.Drawing.Point(297, 357);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(242, 35);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Ayarları Kaydet ve Sıfırla";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // label4
             // 
@@ -349,62 +348,59 @@
             this.textBox5.Size = new System.Drawing.Size(438, 26);
             this.textBox5.TabIndex = 6;
             // 
-            // button1
+            // label3
             // 
-            this.button1.Location = new System.Drawing.Point(297, 357);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(242, 35);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Ayarları Kaydet ve Sıfırla";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_2);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(338, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(432, 20);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Uzun Ara Zamanını Dakika Cinsinden Giriniz - Varsayılan: 30";
             // 
-            // button2
+            // textBox4
             // 
-            this.button2.Location = new System.Drawing.Point(545, 357);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(263, 35);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Seçili Alarmı Çal ve Ayarla";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.textBox4.Location = new System.Drawing.Point(338, 174);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(438, 26);
+            this.textBox4.TabIndex = 4;
             // 
-            // comboBox1
+            // label2
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Location = new System.Drawing.Point(338, 296);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(438, 28);
-            this.comboBox1.TabIndex = 10;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(338, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(415, 20);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Kısa Ara Zamanını Dakika Cinsinden Giriniz - Varsayılan: 5";
             // 
-            // label5
+            // textBox3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(334, 273);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Alarm Sesini Seçin";
+            this.textBox3.Location = new System.Drawing.Point(338, 114);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(438, 26);
+            this.textBox3.TabIndex = 2;
             // 
-            // contextMenuStrip1
+            // label1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(166, 26);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(338, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(438, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Pomodoro Zamanını Dakika Cinsinden Giriniz - Varsayılan: 25";
             // 
-            // toolStripMenuItem1
+            // textBox2
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.toolStripMenuItem1.Text = "Yapılacaklara Taşı";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.textBox2.Location = new System.Drawing.Point(338, 58);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(438, 26);
+            this.textBox2.TabIndex = 0;
             // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.label6);
-            this.tabPage3.Controls.Add(this.button4);
-            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.importButton);
+            this.tabPage3.Controls.Add(this.exportButton);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -412,26 +408,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Çalışma Verilerim";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(7, 6);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(214, 35);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Yapılacakları Dışa Aktar";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(7, 47);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(214, 35);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Yapılacakları İçe Aktar";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label6
             // 
@@ -442,7 +418,31 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "(Deneme Sürümünde Sadece Günlük Verileri Geri Getirir)";
             // 
-            // Form1
+            // importButton
+            // 
+            this.importButton.Location = new System.Drawing.Point(7, 47);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(214, 35);
+            this.importButton.TabIndex = 1;
+            this.importButton.Text = "Yapılacakları İçe Aktar";
+            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // exportButton
+            // 
+            this.exportButton.Location = new System.Drawing.Point(7, 6);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(214, 35);
+            this.exportButton.TabIndex = 0;
+            this.exportButton.Text = "Yapılacakları Dışa Aktar";
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // pomodoroFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -453,7 +453,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "pomodoroFrom";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pomodoro Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -463,11 +463,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.yapilmisBox.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.yapilacakBox.ResumeLayout(false);
             this.yapilacakBox.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.ResumeLayout(false);
@@ -510,8 +510,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Button importButton;
         private System.Windows.Forms.Label label6;
     }
 }
