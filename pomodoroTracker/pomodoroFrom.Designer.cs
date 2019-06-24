@@ -94,7 +94,7 @@
             // 
             // buttonRestart
             // 
-            this.buttonRestart.Location = new System.Drawing.Point(403, 233);
+            this.buttonRestart.Location = new System.Drawing.Point(404, 232);
             this.buttonRestart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonRestart.Name = "buttonRestart";
             this.buttonRestart.Size = new System.Drawing.Size(186, 35);
@@ -107,7 +107,7 @@
             // 
             this.zamanLabel.AutoSize = true;
             this.zamanLabel.Font = new System.Drawing.Font("Ebrima", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zamanLabel.Location = new System.Drawing.Point(8, 84);
+            this.zamanLabel.Location = new System.Drawing.Point(8, 85);
             this.zamanLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.zamanLabel.Name = "zamanLabel";
             this.zamanLabel.Size = new System.Drawing.Size(394, 86);
@@ -117,7 +117,7 @@
             // 
             // buttonReset
             // 
-            this.buttonReset.Location = new System.Drawing.Point(224, 233);
+            this.buttonReset.Location = new System.Drawing.Point(224, 232);
             this.buttonReset.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonReset.Name = "buttonReset";
             this.buttonReset.Size = new System.Drawing.Size(171, 35);
@@ -128,7 +128,7 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(4, 233);
+            this.buttonStart.Location = new System.Drawing.Point(4, 232);
             this.buttonStart.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonStart.Name = "buttonStart";
             this.buttonStart.Size = new System.Drawing.Size(212, 35);
@@ -154,7 +154,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(1, 1);
+            this.tabControl1.Location = new System.Drawing.Point(2, 2);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -181,7 +181,7 @@
             // 
             this.yapilmisBox.Controls.Add(this.yapilmisSil);
             this.yapilmisBox.Controls.Add(this.yapilmisList);
-            this.yapilmisBox.Location = new System.Drawing.Point(467, 322);
+            this.yapilmisBox.Location = new System.Drawing.Point(466, 322);
             this.yapilmisBox.Name = "yapilmisBox";
             this.yapilmisBox.Size = new System.Drawing.Size(453, 432);
             this.yapilmisBox.TabIndex = 3;
@@ -206,7 +206,7 @@
             this.yapilmisList.ItemHeight = 24;
             this.yapilmisList.Location = new System.Drawing.Point(6, 25);
             this.yapilmisList.Name = "yapilmisList";
-            this.yapilmisList.Size = new System.Drawing.Size(441, 364);
+            this.yapilmisList.Size = new System.Drawing.Size(440, 364);
             this.yapilmisList.TabIndex = 3;
             this.yapilmisList.DoubleClick += new System.EventHandler(this.yapilmisList_DoubleClick);
             // 
@@ -250,7 +250,7 @@
             this.yapilacakList.ItemHeight = 24;
             this.yapilacakList.Location = new System.Drawing.Point(6, 25);
             this.yapilacakList.Name = "yapilacakList";
-            this.yapilacakList.Size = new System.Drawing.Size(441, 364);
+            this.yapilacakList.Size = new System.Drawing.Size(440, 364);
             this.yapilacakList.TabIndex = 2;
             this.yapilacakList.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
@@ -286,11 +286,11 @@
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(1076, 762);
+            this.tabPage2.Size = new System.Drawing.Size(1076, 769);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Ayarlar";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -298,7 +298,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(334, 273);
+            this.label5.Location = new System.Drawing.Point(334, 272);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(141, 20);
             this.label5.TabIndex = 11;
@@ -307,16 +307,16 @@
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Location = new System.Drawing.Point(338, 296);
+            this.comboBox1.Location = new System.Drawing.Point(338, 295);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(438, 28);
             this.comboBox1.TabIndex = 10;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(545, 357);
+            this.button2.Location = new System.Drawing.Point(544, 357);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(263, 35);
+            this.button2.Size = new System.Drawing.Size(262, 35);
             this.button2.TabIndex = 9;
             this.button2.Text = "Seçili Alarmı Çal ve Ayarla";
             this.button2.UseVisualStyleBackColor = true;
@@ -401,10 +401,10 @@
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.importButton);
             this.tabPage3.Controls.Add(this.exportButton);
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1076, 762);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage3.Size = new System.Drawing.Size(1076, 769);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Çalışma Verilerim";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -412,7 +412,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(227, 54);
+            this.label6.Location = new System.Drawing.Point(226, 54);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(414, 20);
             this.label6.TabIndex = 2;
@@ -420,7 +420,7 @@
             // 
             // importButton
             // 
-            this.importButton.Location = new System.Drawing.Point(7, 47);
+            this.importButton.Location = new System.Drawing.Point(8, 48);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(214, 35);
             this.importButton.TabIndex = 1;
@@ -430,7 +430,7 @@
             // 
             // exportButton
             // 
-            this.exportButton.Location = new System.Drawing.Point(7, 6);
+            this.exportButton.Location = new System.Drawing.Point(8, 6);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(214, 35);
             this.exportButton.TabIndex = 0;
@@ -449,7 +449,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1084, 797);
             this.Controls.Add(this.tabControl1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
