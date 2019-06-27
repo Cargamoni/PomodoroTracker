@@ -18,9 +18,10 @@ namespace pomodoroTracker
         public int pomodoroCounter;
         public int totalPomodoro;
         public string breakAlarm;
-        public string[] importedData;
-        public string[] exportedData;
-        public string[] dataDifference;
+        public string[,] newImportedData;
+        public string[,] newExportedData;
+        public string[] kategori;
+        public string operatingSystem;
         public pomodoroSettings()
         {
             pomodoroTime = 25;
@@ -28,7 +29,13 @@ namespace pomodoroTracker
             longBreakTime = 30;
             pomodoroCounter = 1;
             totalPomodoro = 0;
-            breakAlarm = "sounds/Alarm01.wav";
+            OperatingSystem osName = System.Environment.OSVersion;
+            operatingSystem = osName.VersionString.Split(' ')[0];
+            if (operatingSystem == "Windows")
+                breakAlarm = @"sounds\Alarm01.wav";
+            else
+                breakAlarm = "sounds/Alarm01.wav";
+            System.GC.SuppressFinalize(osName);
         }
 
         #region Old Export
@@ -115,121 +122,203 @@ namespace pomodoroTracker
         //    xmlWriter.Close();
         //}
         #endregion
+        #region Old Import
+        //public void importData()
+        //{
+        //    string xmlTableName = DateTime.Today.ToShortDateString();
+        //    xmlTableName = xmlTableName.Replace("/", ".");
+        //    if (File.Exists("data-" + xmlTableName + ".xml"))
+        //    {
+        //        XmlDocument doc = new XmlDocument();
+        //        doc.Load("data-" + xmlTableName + ".xml");
+        //        //XmlNodeList nodes = doc.DocumentElement.SelectNodes("date-" + tarih);
+        //        string xmlRoot = "/date-" + xmlTableName + "/gunlukVeri"; //+ "/pomodoro-" + totalPomodoro;
+        //        XmlNodeList nodes = doc.DocumentElement.SelectNodes(xmlRoot);
+        //        int yapilacakCount = 0;
+        //        foreach (XmlNode node in nodes)
+        //        {
+        //            yapilacakCount++;
+        //        }
 
-        public void importData(string tarih)
+        //        importedData = new string[yapilacakCount];
+        //        int i = 0;
+        //        foreach (XmlNode node in nodes)
+        //        {
+        //            importedData[i] = node.SelectSingleNode("yapilacak").InnerXml.ToString();
+        //            i++;
+        //        }
+        //    }
+        //    else
+        //        System.Windows.Forms.MessageBox.Show("Bugüne ait içe aktarılacak veri bulunamadı.","Veri Bulunamadı !", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        //}
+        #endregion
+        #region Different Data Func Old
+        //public bool differentData()
+        //{
+        //    int difNumber = 0;
+        //    this.importData();
+        //    for (int i = 0; i <= exportedData.Length - 1; i++)
+        //    {
+        //        for (int j = 0; j <= importedData.Length - 1; j++)
+        //        {
+        //            if (importedData[j] == exportedData[i])
+        //                break;
+        //            else if (importedData[j] != exportedData[i] && j == importedData.Length - 1)
+        //                difNumber++;
+        //        }
+        //    }
+
+        //    if (difNumber != 0)
+        //    {
+        //        dataDifference = new string[difNumber];
+        //        int k = 0;
+        //        for (int i = 0; i <= exportedData.Length - 1; i++)
+        //        {
+        //            for (int j = 0; j <= importedData.Length - 1; j++)
+        //            {
+        //                if (importedData[j] == exportedData[i])
+        //                    break;
+        //                else if (importedData[j] != exportedData[i] && j == importedData.Length - 1)
+        //                {
+        //                    dataDifference[k] = exportedData[i];
+        //                    k++;
+        //                }
+        //            }
+        //        }
+        //        return true;
+        //    }
+        //    return false;
+        //}
+        #endregion
+        #region adoptExportData
+        //public void adoptExportData(string tarih, string[] data)
+        //{ 
+        //    string xmlTableName = DateTime.Today.ToShortDateString();
+        //    xmlTableName = xmlTableName.Replace("/", ".");
+
+        //    if (!File.Exists("data-" + xmlTableName + ".xml"))
+        //    {
+        //        XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
+        //        xmlWriterSettings.Indent = true;
+        //        xmlWriterSettings.NewLineOnAttributes = true;
+        //        using (XmlWriter xmlWriter = XmlWriter.Create("data-" + xmlTableName + ".xml", xmlWriterSettings))
+        //        {
+        //            xmlWriter.WriteStartDocument();
+        //            xmlWriter.WriteComment(xmlTableName + " Gününün Bilgileri");
+
+        //            xmlWriter.WriteStartElement("date-" + xmlTableName);
+
+        //            for (int i = 0; i <= data.Length - 1; i++)
+        //            {
+
+        //                xmlWriter.WriteStartElement("gunlukVeri");                                  //Element Açar
+        //                xmlWriter.WriteAttributeString("yapilmis", "false");
+        //                xmlWriter.WriteElementString("yapilacak", data[i]);
+        //                xmlWriter.WriteEndElement();                                                            //Element Kapatır
+        //            }
+
+        //            xmlWriter.WriteEndElement();
+        //            xmlWriter.WriteEndDocument();
+        //            xmlWriter.Flush();
+        //            xmlWriter.Close();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        XDocument xDocument = XDocument.Load("data-" + xmlTableName + ".xml");
+        //        XElement root = xDocument.Element("date-" + xmlTableName);
+        //        IEnumerable<XElement> rows = root.Descendants("gunlukVeri");
+        //        XElement lastRow = rows.Last();
+        //        for (int i = 0; i <= data.Length - 1; i++)
+        //        {
+        //            lastRow.AddBeforeSelf(
+        //           new XElement("gunlukVeri",
+        //           new XElement("yapilacak", data[i]),
+        //           new XAttribute("yapilmis","false")));
+        //        }
+        //        xDocument.Save("data-" + xmlTableName + ".xml");
+        //    }
+        //}
+        #endregion
+
+        public DataSet newImport()
         {
             string xmlTableName = DateTime.Today.ToShortDateString();
             xmlTableName = xmlTableName.Replace("/", ".");
-            if (File.Exists("data-" + xmlTableName + ".xml"))
+            //if (File.Exists("data-" + xmlTableName + ".xml"))
+            if (File.Exists("dataTest.xml"))
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load("data-" + tarih + ".xml");
-                //XmlNodeList nodes = doc.DocumentElement.SelectNodes("date-" + tarih);
-                string xmlRoot = "/date-" + tarih + "/gunlukVeri"; //+ "/pomodoro-" + totalPomodoro;
-                XmlNodeList nodes = doc.DocumentElement.SelectNodes(xmlRoot);
-                int yapilacakCount = 0;
-                foreach (XmlNode node in nodes)
-                {
-                    yapilacakCount++;
-                }
-
-                importedData = new string[yapilacakCount];
-                int i = 0;
-                foreach (XmlNode node in nodes)
-                {
-                    importedData[i] = node.SelectSingleNode("yapilacak").InnerXml.ToString();
-                    i++;
-                }
+                DataSet newData = new DataSet();
+                //newData.ReadXml("data-" + xmlTableName + ".xml");
+                newData.ReadXml("dataTest.xml");
+                return newData;
             }
-            else
-                System.Windows.Forms.MessageBox.Show("Bugüne ait içe aktarılacak veri bulunamadı.","Veri Bulunamadı !", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+            return null;
         }
 
-        public bool differentData()
+        public void newExport()
         {
-            int difNumber = 0;
-            string todaysData = DateTime.Today.ToShortDateString();
-            todaysData = todaysData.Replace("/", ".");
-            this.importData(todaysData);
-            for (int i = 0; i <= exportedData.Length - 1; i++)
-            {
-                for (int j = 0; j <= importedData.Length - 1; j++)
-                {
-                    if (importedData[j] == exportedData[i])
-                        break;
-                    else if (importedData[j] != exportedData[i] && j == importedData.Length - 1)
-                        difNumber++;
-                }
-            }
-
-            if (difNumber != 0)
-            {
-                dataDifference = new string[difNumber];
-                int k = 0;
-                for (int i = 0; i <= exportedData.Length - 1; i++)
-                {
-                    for (int j = 0; j <= importedData.Length - 1; j++)
-                    {
-                        if (importedData[j] == exportedData[i])
-                            break;
-                        else if (importedData[j] != exportedData[i] && j == importedData.Length - 1)
-                        {
-                            dataDifference[k] = exportedData[i];
-                            k++;
-                        }
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-
-        public void adoptExportData(string tarih, string[] data)
-        { 
+            DataSet newData = new DataSet();
             string xmlTableName = DateTime.Today.ToShortDateString();
             xmlTableName = xmlTableName.Replace("/", ".");
+            xmlTableName = "date-" + xmlTableName + "-data";
+            newData.DataSetName = xmlTableName;
+            //if (!File.Exists("dataTest.xml"))
+            //{
+                newData.Tables.Add("gunlukVeri");
+                newData.Tables[0].Columns.Add("kategori");
+                newData.Tables[0].Columns.Add("yapilmis");
+                newData.Tables[0].Columns.Add("yapilacak");
 
-            if (!File.Exists("data-" + xmlTableName + ".xml"))
-            {
-                XmlWriterSettings xmlWriterSettings = new XmlWriterSettings();
-                xmlWriterSettings.Indent = true;
-                xmlWriterSettings.NewLineOnAttributes = true;
-                using (XmlWriter xmlWriter = XmlWriter.Create("data-" + xmlTableName + ".xml", xmlWriterSettings))
+                //for (int i = 0; i <= this.exportedData.Length - 1; i++)
+                //{
+                //    string[] row = new string[] { "is", "false", this.exportedData[i] };
+                //    newData.Tables[0].Rows.Add(row);
+                //}
+
+                int satir = this.newExportedData.GetLength(0);
+                int sutun = this.newExportedData.GetLength(1);
+                //string[] row = new string[3];
+
+                for (int i = 0; i <= satir-1; i++)
                 {
-                    xmlWriter.WriteStartDocument();
-                    xmlWriter.WriteComment(xmlTableName + " Gününün Bilgileri");
-
-                    xmlWriter.WriteStartElement("date-" + xmlTableName);
-
-                    for (int i = 0; i <= data.Length - 1; i++)
-                    {
-
-                        xmlWriter.WriteStartElement("gunlukVeri");                                  //Element Açar
-                                                                                                    //xmlWriter.WriteElementString("id", i.ToString());                                       //Element Verisi yazılır
-                        xmlWriter.WriteElementString("yapilacak", data[i]);
-                        xmlWriter.WriteEndElement();                                                            //Element Kapatır
-                    }
-
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.WriteEndDocument();
-                    xmlWriter.Flush();
-                    xmlWriter.Close();
+                    string[] row = new string[] { this.newExportedData[i, 0], this.newExportedData[i, 1], this.newExportedData[i, 2] };
+                    newData.Tables[0].Rows.Add(row);
+                    //for(int j = 0; j<= sutun-1; j++)
+                    //{
+                    //    row[j] = newExportedData[i, j];
+                    //}
+                    //newData.Tables[0].Rows.Add(row);
+                    //System.GC.SuppressFinalize(row);
                 }
-            }
-            else
+
+            newData.WriteXml("dataTest.xml");
+            //}
+            //else
+            //{
+                // Buraya karşılaştırma gelecek şimdilik böyle.
+                //newData.ReadXml("dataTest.xml");
+                //int columnCount = newData.Tables[0].Columns.Count;
+                //for (int i = 0; i <= this.newExportedData.GetUpperBound(0); i++)
+                //{
+                //    string[] row = new string[] { this.newExportedData[i,0], this.newExportedData[i,1], this.newExportedData[i, 2] };
+                //    newData.Tables[0].Rows.Add(row);
+                //}
+                //newData.WriteXml("dataTest.xml");
+            //}
+        }
+
+        public DataSet kategoriImport()
+        {
+            string xmlTableName = DateTime.Today.ToShortDateString();
+            xmlTableName = xmlTableName.Replace("/", ".");
+            if (File.Exists("kategoriSettings.xml"))
             {
-                XDocument xDocument = XDocument.Load("data-" + xmlTableName + ".xml");
-                XElement root = xDocument.Element("date-" + xmlTableName);
-                IEnumerable<XElement> rows = root.Descendants("gunlukVeri");
-                XElement firstRow = rows.First();
-                for (int i = 0; i <= data.Length - 1; i++)
-                {
-                    firstRow.AddBeforeSelf(
-                   new XElement("gunlukVeri",
-                   new XElement("yapilacak", data[i])));
-                }
-                xDocument.Save("data-" + xmlTableName + ".xml");
+                DataSet newData = new DataSet();
+                newData.ReadXml("kategoriSettings.xml");
+                return newData;
             }
+            return null;
         }
     }
 }

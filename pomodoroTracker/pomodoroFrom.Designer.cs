@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(pomodoroFrom));
             this.pomodoroBox = new System.Windows.Forms.GroupBox();
             this.buttonRestart = new System.Windows.Forms.Button();
             this.zamanLabel = new System.Windows.Forms.Label();
@@ -61,11 +62,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.importButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.kategoriComboBox2 = new System.Windows.Forms.ComboBox();
+            this.kategoriEkle = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.pomodoroBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -74,6 +80,7 @@
             this.yapilacakBox.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pomodoroBox
@@ -219,6 +226,7 @@
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(165, 22);
             this.toolStripMenuItem1.Text = "Yapılacaklara Taşı";
@@ -266,14 +274,19 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 395);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.textBox1.Location = new System.Drawing.Point(6, 392);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(288, 26);
+            this.textBox1.Size = new System.Drawing.Size(288, 33);
             this.textBox1.TabIndex = 0;
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.textBox6);
+            this.tabPage2.Controls.Add(this.kategoriEkle);
+            this.tabPage2.Controls.Add(this.kategoriComboBox2);
             this.tabPage2.Controls.Add(this.label5);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.button2);
@@ -286,11 +299,11 @@
             this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabPage2.Size = new System.Drawing.Size(1076, 769);
+            this.tabPage2.Size = new System.Drawing.Size(1076, 762);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Ayarlar";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -398,16 +411,25 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.importButton);
             this.tabPage3.Controls.Add(this.exportButton);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage3.Size = new System.Drawing.Size(1076, 769);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1076, 762);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Çalışma Verilerim";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(663, 80);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(403, 674);
+            this.dataGridView1.TabIndex = 3;
             // 
             // label6
             // 
@@ -442,6 +464,39 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // kategoriComboBox2
+            // 
+            this.kategoriComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.kategoriComboBox2.Location = new System.Drawing.Point(7, 477);
+            this.kategoriComboBox2.Name = "kategoriComboBox2";
+            this.kategoriComboBox2.Size = new System.Drawing.Size(438, 28);
+            this.kategoriComboBox2.TabIndex = 12;
+            // 
+            // kategoriEkle
+            // 
+            this.kategoriEkle.Location = new System.Drawing.Point(288, 511);
+            this.kategoriEkle.Name = "kategoriEkle";
+            this.kategoriEkle.Size = new System.Drawing.Size(157, 35);
+            this.kategoriEkle.TabIndex = 13;
+            this.kategoriEkle.Text = "Kategori Ekle";
+            this.kategoriEkle.UseVisualStyleBackColor = true;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(9, 516);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(273, 26);
+            this.textBox6.TabIndex = 14;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 454);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(85, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Kategoriler";
+            // 
             // pomodoroFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -470,6 +525,7 @@
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -513,6 +569,11 @@
         private System.Windows.Forms.Button exportButton;
         private System.Windows.Forms.Button importButton;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button kategoriEkle;
+        private System.Windows.Forms.ComboBox kategoriComboBox2;
     }
 }
 

@@ -32,6 +32,46 @@ namespace pomodoroTracker
         private void Form1_Load(object sender, EventArgs e)
         {
             duzenleme();
+
+            DataSet dt = new DataSet();
+            dt = ayarlar.newImport();
+
+            if (dt != null)
+            {
+                foreach (DataColumn column in dt.Tables[0].Columns)
+                    dataGridView1.Columns.Add("column1", column.ColumnName);
+
+                ayarlar.newImportedData = new string[dt.Tables[0].Rows.Count, dt.Tables[0].Columns.Count];
+
+                for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
+                {
+                    DataGridViewRow testRow = (DataGridViewRow)dataGridView1.Rows[i].Clone();
+                    for (int j = 0; j <= dt.Tables[0].Columns.Count - 1; j++)
+                    {
+                        testRow.Cells[j].Value = dt.Tables[0].Rows[i][j];
+                        ayarlar.newImportedData[i,j] = dt.Tables[0].Rows[i][j].ToString();      //Breakpoint koyulacak.
+                    }
+                    dataGridView1.Rows.Add(testRow);
+                }
+            }
+
+            dt = ayarlar.kategoriImport();
+
+            if(dt!= null)
+            {
+                ayarlar.kategori = new string[dt.Tables[0].Rows.Count];
+                for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
+                {
+                    kategoriComboBox2.Items.Add(dt.Tables[0].Rows[i][0].ToString());
+                    ayarlar.kategori[i] = dt.Tables[0].Rows[i][0].ToString();
+                }
+                kategoriComboBox2.SelectedIndex = 0;
+                kategoriComboBox2.Enabled = true;
+            }
+            else
+            {
+                kategoriComboBox2.Enabled = false;
+            }
         }
 
         #region Component Düzenleyen Fonksiyon
@@ -177,44 +217,81 @@ namespace pomodoroTracker
         }
 
         //Yapılacak ve yapılmış işleri diziye aktarır.
-        public bool dataToArray()
+        public void dataToExport()
         {
-            if (yapilacakList.Items.Count != 0)
+            if (yapilmisList.Items.Count != 0)
             {
-                string[] data = new string[yapilacakList.Items.Count];
-                for (int i = 0; i <= yapilacakList.Items.Count - 1; i++)
+                if (yapilacakList.Items.Count != 0)
                 {
-                    data[i] = yapilacakList.Items[i].ToString();
+                    int rowsCount = yapilacakList.Items.Count + yapilmisList.Items.Count;
+                    string[,] exportData = new string[rowsCount, 3];
+                    for (int i = 0; i <= yapilacakList.Items.Count - 1; i++)
+                    {
+                        for (int j = 0; j <= 2; j++)
+                        {
+                            if (j == 0)
+                                exportData[i, j] = yapilacakList.Items[i].ToString().Split('|')[1].TrimEnd().TrimStart();
+                            else if (j == 1)
+                                exportData[i, j] = "false";
+                            else
+                                exportData[i, j] = yapilacakList.Items[i].ToString().Split('|')[0].TrimEnd();
+                        }
+                    }
+                    int fark = yapilacakList.Items.Count;
+                    for (int i = 0; i <= yapilmisList.Items.Count - 1; i++)
+                    {
+                        for (int j = 0; j <= 2; j++)
+                        {
+                            if (j == 0)
+                                exportData[i +fark, j] = yapilmisList.Items[i].ToString().Split('|')[1].TrimEnd().TrimStart();
+                            else if (j == 1)
+                                exportData[i + fark, j] = "true";
+                            else
+                                exportData[i + fark, j] = yapilmisList.Items[i].ToString().Split('|')[0].TrimEnd();
+                        }
+                    }
+                    ayarlar.newExportedData = exportData;
+                    ayarlar.newExport();
                 }
-                //ayarlar.exportData(data);
-                ayarlar.exportedData = data;
-                return true;
             }
-            else
-                return false;
         }
 
-        public bool arrayToData()
+
+        //Yeni Import Yöntemi ile listeleri yükleme
+        public bool arrayToImport()
         {
-            string todaysData = DateTime.Today.ToShortDateString();
-            todaysData = todaysData.Replace("/", ".");
-            ayarlar.importData(todaysData);
-            if (ayarlar.importedData != null && ayarlar.importedData.Length != 0)
+            ayarlar.newImport();
+            if (ayarlar.newImportedData != null && ayarlar.newImportedData.Length != 0)
             {
-                if (ayarlar.importedData.Length != 0)
+                if (ayarlar.newImportedData.Length != 0)
                 {
-                    string[] data = ayarlar.importedData;
-                    for (int i = 0; i <= ayarlar.importedData.Length - 1; i++)
+                    string[,] data = ayarlar.newImportedData;
+                    for (int i = 0; i <= ayarlar.newImportedData.GetUpperBound(0); i++)
                     {
-                        yapilacakList.Items.Add(data[i].ToString());
+                            if (data[i, 1] == "false")
+                                yapilacakList.Items.Add(data[i, 2].ToString() + " | " + data[i, 0]);
+                            else
+                                yapilmisList.Items.Add(data[i, 2].ToString() + " | " + data[i, 0]);
                     }
                 }
+                yapilanYuzde();
                 return true;
             }
             else
                 return false;
 
         }
+
+        public bool pipeController(string gelenText)
+        {
+            for (int i = 0; i <= gelenText.Length - 1; i++)
+            {
+                if (gelenText[i] == '|')
+                    return false;
+            }
+            return true;            
+        }
+
         #endregion
         #region Evenets ButtonClick
         //Butona basıldığında zmaan başlatır veya durdurur.
@@ -242,8 +319,16 @@ namespace pomodoroTracker
         {
             if (textBox1.Text.Length != 0)
             {
-                yapilacakList.Items.Add(textBox1.Text);
-                textBox1.Clear();
+                if (pipeController(textBox1.Text))
+                {
+                    yapilacakList.Items.Add(textBox1.Text + " | " + kategoriComboBox2.SelectedItem.ToString());
+                    textBox1.Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Pipe karakteri kategorileri birbirinden ayırmak için kullanıldığından bu alanda kullanamazsınız.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    textBox1.Clear();
+                }
             }
             yapilanYuzde();
         }
@@ -262,7 +347,12 @@ namespace pomodoroTracker
             ayarlar.shortBreakTime = Convert.ToInt32(textBox3.Text);
             ayarlar.longBreakTime = Convert.ToInt32(textBox4.Text);
             ayarlar.pomodoroCounter = Convert.ToInt32(textBox5.Text);
-            ayarlar.breakAlarm = "sounds/" + comboBox1.SelectedItem.ToString();
+
+            if (ayarlar.operatingSystem == "Windows")
+                ayarlar.breakAlarm = @"sounds\" + comboBox1.SelectedItem.ToString();
+            else
+                ayarlar.breakAlarm = "sounds/" + comboBox1.SelectedItem.ToString();
+
             pomodoroReset();
             duzenleme();
         }
@@ -270,7 +360,10 @@ namespace pomodoroTracker
         //Combobox üzerinde seçili olan sesi çalar.
         private void button2_Click_1(object sender, EventArgs e)
         {
-            alarmSesi = new SoundPlayer("sounds/" + comboBox1.SelectedItem.ToString());
+            if (ayarlar.operatingSystem == "Windows")
+                alarmSesi = new SoundPlayer(@"sounds\" + comboBox1.SelectedItem.ToString());
+            else
+               alarmSesi = new SoundPlayer("sounds/" + comboBox1.SelectedItem.ToString());
             alarmSesi.Play();
         }
         #endregion
@@ -296,8 +389,16 @@ namespace pomodoroTracker
             {
                 if (textBox1.Text.Length != 0)
                 {
-                    yapilacakList.Items.Add(textBox1.Text);
-                    textBox1.Clear();
+                    if (pipeController(textBox1.Text))
+                    {
+                        yapilacakList.Items.Add(textBox1.Text + " | " + kategoriComboBox2.SelectedItem.ToString());
+                        textBox1.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Pipe karakteri kategorileri birbirinden ayırmak için kullanıldığından bu alanda kullanamazsınız.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        textBox1.Clear();
+                    }
                 }
                 yapilanYuzde();
             }
@@ -360,43 +461,17 @@ namespace pomodoroTracker
 
         private void button3_Click(object sender, EventArgs e)      //Export Button
         {
-            //ayarlar.exportData();
-            if (dataToArray())
-            {
-                string todaysData = DateTime.Today.ToShortDateString();
-                todaysData = todaysData.Replace("/", ".");
-                if (!File.Exists("data-" + todaysData + ".xml"))
-                {
-                    ayarlar.adoptExportData(todaysData, ayarlar.exportedData);
-                }
-                else if (ayarlar.differentData())
-                {
-                    ayarlar.adoptExportData(todaysData, ayarlar.dataDifference);
-                }
-            }
+            dataToExport();
         }
 
         private void button4_Click(object sender, EventArgs e)      //Import button
         {
-            arrayToData();
+            arrayToImport();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (dataToArray())
-            {
-                string todaysData = DateTime.Today.ToShortDateString();
-                todaysData = todaysData.Replace("/", ".");
-                if (!File.Exists("data-" + todaysData + ".xml"))
-                {
-                    ayarlar.adoptExportData(todaysData, ayarlar.exportedData);
-                }
-                else if (ayarlar.differentData())
-                {
-                    ayarlar.adoptExportData(todaysData, ayarlar.dataDifference);
-
-                }
-            }
+            dataToExport();
         }
     }
 }
