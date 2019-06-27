@@ -310,8 +310,6 @@ namespace pomodoroTracker
 
         public DataSet kategoriImport()
         {
-            string xmlTableName = DateTime.Today.ToShortDateString();
-            xmlTableName = xmlTableName.Replace("/", ".");
             if (File.Exists("kategoriSettings.xml"))
             {
                 DataSet newData = new DataSet();
@@ -319,6 +317,21 @@ namespace pomodoroTracker
                 return newData;
             }
             return null;
+        }
+
+        public void kategoriExport()
+        {
+            DataSet newData = new DataSet();
+            string xmlTableName = DateTime.Today.ToShortDateString();
+            newData.DataSetName = "kategoriSettings";
+
+            newData.Tables.Add("genelVeri");
+            newData.Tables[0].Columns.Add("kategori");
+
+            for (int i = 0; i <= kategori.Length - 1; i++)
+                newData.Tables[0].Rows.Add(kategori[i]);
+
+            newData.WriteXml("kategoriSettings.xml");
         }
     }
 }

@@ -55,23 +55,7 @@ namespace pomodoroTracker
                 }
             }
 
-            dt = ayarlar.kategoriImport();
-
-            if(dt!= null)
-            {
-                ayarlar.kategori = new string[dt.Tables[0].Rows.Count];
-                for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
-                {
-                    kategoriComboBox2.Items.Add(dt.Tables[0].Rows[i][0].ToString());
-                    ayarlar.kategori[i] = dt.Tables[0].Rows[i][0].ToString();
-                }
-                kategoriComboBox2.SelectedIndex = 0;
-                kategoriComboBox2.Enabled = true;
-            }
-            else
-            {
-                kategoriComboBox2.Enabled = false;
-            }
+            kategoriToImport();
         }
 
         #region Component Düzenleyen Fonksiyon
@@ -282,6 +266,42 @@ namespace pomodoroTracker
 
         }
 
+        public void kategoriToImport()
+        {
+            DataSet dt = new DataSet();
+            dt = ayarlar.kategoriImport();
+            if (dt != null)
+            {
+                kategoriComboBox2.Items.Clear();
+                ayarlar.kategori = new string[dt.Tables[0].Rows.Count];
+                for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
+                {
+                    kategoriComboBox2.Items.Add(dt.Tables[0].Rows[i][0].ToString());
+                    ayarlar.kategori[i] = dt.Tables[0].Rows[i][0].ToString();
+                }
+                kategoriComboBox2.SelectedIndex = 0;
+                kategoriComboBox2.Enabled = true;
+            }
+            else
+            {
+                kategoriComboBox2.Enabled = false;
+            }
+        }
+
+        public void kategoriToExport(string sonKategori)
+        {
+            string[] newKategori = new string[ayarlar.kategori.Length + 1];
+            for (int i = 0; i <= newKategori.Length - 1; i++)
+            {
+                if (i == newKategori.Length - 1)
+                    newKategori[i] = sonKategori;
+                else
+                    newKategori[i] = ayarlar.kategori[i];
+            }
+            ayarlar.kategori = newKategori;
+            ayarlar.kategoriExport();
+        }
+
         public bool pipeController(string gelenText)
         {
             for (int i = 0; i <= gelenText.Length - 1; i++)
@@ -472,6 +492,17 @@ namespace pomodoroTracker
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             dataToExport();
+        }
+
+        //Kategori ekleme bölümü
+        private void kategoriEkle_Click(object sender, EventArgs e)
+        {
+            if(kategoriTextBox6.Text.Length != 0)
+            {
+                kategoriToExport(kategoriTextBox6.Text);
+                kategoriToImport();
+                kategoriTextBox6.Clear();
+            }
         }
     }
 }

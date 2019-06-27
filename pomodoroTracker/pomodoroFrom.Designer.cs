@@ -70,7 +70,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.kategoriComboBox2 = new System.Windows.Forms.ComboBox();
             this.kategoriEkle = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.kategoriTextBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.pomodoroBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -284,7 +284,7 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.textBox6);
+            this.tabPage2.Controls.Add(this.kategoriTextBox6);
             this.tabPage2.Controls.Add(this.kategoriEkle);
             this.tabPage2.Controls.Add(this.kategoriComboBox2);
             this.tabPage2.Controls.Add(this.label5);
@@ -434,11 +434,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(226, 54);
+            this.label6.Location = new System.Drawing.Point(250, 33);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(414, 20);
+            this.label6.Size = new System.Drawing.Size(534, 20);
             this.label6.TabIndex = 2;
-            this.label6.Text = "(Deneme Sürümünde Sadece Günlük Verileri Geri Getirir)";
+            this.label6.Text = "(Deneme Sürümünde Sadece Tek Dosya Tutar Dosya İçeriğini Geri Getirir)";
             // 
             // importButton
             // 
@@ -480,13 +480,14 @@
             this.kategoriEkle.TabIndex = 13;
             this.kategoriEkle.Text = "Kategori Ekle";
             this.kategoriEkle.UseVisualStyleBackColor = true;
+            this.kategoriEkle.Click += new System.EventHandler(this.kategoriEkle_Click);
             // 
-            // textBox6
+            // kategoriTextBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(9, 516);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(273, 26);
-            this.textBox6.TabIndex = 14;
+            this.kategoriTextBox6.Location = new System.Drawing.Point(9, 516);
+            this.kategoriTextBox6.Name = "kategoriTextBox6";
+            this.kategoriTextBox6.Size = new System.Drawing.Size(273, 26);
+            this.kategoriTextBox6.TabIndex = 14;
             // 
             // label7
             // 
@@ -506,6 +507,7 @@
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "pomodoroFrom";
@@ -571,7 +573,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox kategoriTextBox6;
         private System.Windows.Forms.Button kategoriEkle;
         private System.Windows.Forms.ComboBox kategoriComboBox2;
     }
