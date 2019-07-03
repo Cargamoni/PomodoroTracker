@@ -53,6 +53,7 @@ namespace pomodoroTracker
                     }
                     dataGridView1.Rows.Add(testRow);
                 }
+                arrayToImport();
             }
 
             kategoriToImport();
@@ -203,12 +204,12 @@ namespace pomodoroTracker
         //Yapılacak ve yapılmış işleri diziye aktarır.
         public void dataToExport()
         {
-            if (yapilmisList.Items.Count != 0)
+            int rowsCount = yapilacakList.Items.Count + yapilmisList.Items.Count;
+            string[,] exportData = new string[rowsCount, 3];
+            if (yapilacakList.Items.Count != 0)
             {
-                if (yapilacakList.Items.Count != 0)
+                if (yapilmisList.Items.Count != 0)
                 {
-                    int rowsCount = yapilacakList.Items.Count + yapilmisList.Items.Count;
-                    string[,] exportData = new string[rowsCount, 3];
                     for (int i = 0; i <= yapilacakList.Items.Count - 1; i++)
                     {
                         for (int j = 0; j <= 2; j++)
@@ -290,7 +291,12 @@ namespace pomodoroTracker
 
         public void kategoriToExport(string sonKategori)
         {
-            string[] newKategori = new string[ayarlar.kategori.Length + 1];
+            string[] newKategori;
+            if (ayarlar.kategori != null && ayarlar.kategori.Length != 0)
+                newKategori = new string[ayarlar.kategori.Length + 1];
+            else
+                newKategori = new string[1];
+
             for (int i = 0; i <= newKategori.Length - 1; i++)
             {
                 if (i == newKategori.Length - 1)
