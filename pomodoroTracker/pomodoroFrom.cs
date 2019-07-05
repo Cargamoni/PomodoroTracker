@@ -32,7 +32,9 @@ namespace pomodoroTracker
         private void Form1_Load(object sender, EventArgs e)
         {
             duzenleme();
-
+            int screenHeight = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height.ToString());
+            if (screenHeight < this.Height + 30)
+                this.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
             DataSet dt = new DataSet();
             dt = ayarlar.newImport();
 
@@ -238,6 +240,40 @@ namespace pomodoroTracker
                     ayarlar.newExportedData = exportData;
                     ayarlar.newExport();
                 }
+                else if(yapilacakList.Items.Count != 0)
+                {
+                    for (int i = 0; i <= yapilacakList.Items.Count - 1; i++)
+                    {
+                        for (int j = 0; j <= 2; j++)
+                        {
+                            if (j == 0)
+                                exportData[i, j] = yapilacakList.Items[i].ToString().Split('|')[1].TrimEnd().TrimStart();
+                            else if (j == 1)
+                                exportData[i, j] = "false";
+                            else
+                                exportData[i, j] = yapilacakList.Items[i].ToString().Split('|')[0].TrimEnd();
+                        }
+                    }
+                    ayarlar.newExportedData = exportData;
+                    ayarlar.newExport();
+                }
+            }
+            else if(yapilmisList.Items.Count != 0)
+            {
+                for (int i = 0; i <= yapilmisList.Items.Count - 1; i++)
+                {
+                    for (int j = 0; j <= 2; j++)
+                    {
+                        if (j == 0)
+                            exportData[i, j] = yapilmisList.Items[i].ToString().Split('|')[1].TrimEnd().TrimStart();
+                        else if (j == 1)
+                            exportData[i, j] = "true";
+                        else
+                            exportData[i, j] = yapilmisList.Items[i].ToString().Split('|')[0].TrimEnd();
+                    }
+                }
+                ayarlar.newExportedData = exportData;
+                ayarlar.newExport();
             }
         }
 
@@ -347,8 +383,15 @@ namespace pomodoroTracker
             {
                 if (pipeController(textBox1.Text))
                 {
-                    yapilacakList.Items.Add(textBox1.Text + " | " + kategoriComboBox2.SelectedItem.ToString());
-                    textBox1.Clear();
+                    if(kategoriComboBox2.Items.Count != 0)
+                    {
+                        yapilacakList.Items.Add(textBox1.Text + " | " + kategoriComboBox2.SelectedItem.ToString());
+                        textBox1.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Lütfen önce kategori ekleyiniz.", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
@@ -386,6 +429,7 @@ namespace pomodoroTracker
         //Combobox üzerinde seçili olan sesi çalar.
         private void button2_Click_1(object sender, EventArgs e)
         {
+            //MessageBox.Show(ayarlar.operatingSystem.ToString());    
             if (ayarlar.operatingSystem == "Windows")
                 alarmSesi = new SoundPlayer(@"sounds\" + comboBox1.SelectedItem.ToString());
             else

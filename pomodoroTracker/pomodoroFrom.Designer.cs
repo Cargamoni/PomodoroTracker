@@ -49,6 +49,10 @@
             this.yapilacakEkle = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.kategoriTextBox6 = new System.Windows.Forms.TextBox();
+            this.kategoriEkle = new System.Windows.Forms.Button();
+            this.kategoriComboBox2 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
@@ -68,10 +72,6 @@
             this.exportButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.kategoriComboBox2 = new System.Windows.Forms.ComboBox();
-            this.kategoriEkle = new System.Windows.Forms.Button();
-            this.kategoriTextBox6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.pomodoroBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -308,6 +308,40 @@
             this.tabPage2.Text = "Ayarlar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 454);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(85, 20);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "Kategoriler";
+            // 
+            // kategoriTextBox6
+            // 
+            this.kategoriTextBox6.Location = new System.Drawing.Point(9, 516);
+            this.kategoriTextBox6.Name = "kategoriTextBox6";
+            this.kategoriTextBox6.Size = new System.Drawing.Size(273, 26);
+            this.kategoriTextBox6.TabIndex = 14;
+            // 
+            // kategoriEkle
+            // 
+            this.kategoriEkle.Location = new System.Drawing.Point(288, 511);
+            this.kategoriEkle.Name = "kategoriEkle";
+            this.kategoriEkle.Size = new System.Drawing.Size(157, 35);
+            this.kategoriEkle.TabIndex = 13;
+            this.kategoriEkle.Text = "Kategori Ekle";
+            this.kategoriEkle.UseVisualStyleBackColor = true;
+            this.kategoriEkle.Click += new System.EventHandler(this.kategoriEkle_Click);
+            // 
+            // kategoriComboBox2
+            // 
+            this.kategoriComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.kategoriComboBox2.Location = new System.Drawing.Point(7, 477);
+            this.kategoriComboBox2.Name = "kategoriComboBox2";
+            this.kategoriComboBox2.Size = new System.Drawing.Size(438, 28);
+            this.kategoriComboBox2.TabIndex = 12;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -426,9 +460,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(663, 80);
+            this.dataGridView1.Location = new System.Drawing.Point(8, 89);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(403, 674);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 674);
             this.dataGridView1.TabIndex = 3;
             // 
             // label6
@@ -463,40 +497,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // kategoriComboBox2
-            // 
-            this.kategoriComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.kategoriComboBox2.Location = new System.Drawing.Point(7, 477);
-            this.kategoriComboBox2.Name = "kategoriComboBox2";
-            this.kategoriComboBox2.Size = new System.Drawing.Size(438, 28);
-            this.kategoriComboBox2.TabIndex = 12;
-            // 
-            // kategoriEkle
-            // 
-            this.kategoriEkle.Location = new System.Drawing.Point(288, 511);
-            this.kategoriEkle.Name = "kategoriEkle";
-            this.kategoriEkle.Size = new System.Drawing.Size(157, 35);
-            this.kategoriEkle.TabIndex = 13;
-            this.kategoriEkle.Text = "Kategori Ekle";
-            this.kategoriEkle.UseVisualStyleBackColor = true;
-            this.kategoriEkle.Click += new System.EventHandler(this.kategoriEkle_Click);
-            // 
-            // kategoriTextBox6
-            // 
-            this.kategoriTextBox6.Location = new System.Drawing.Point(9, 516);
-            this.kategoriTextBox6.Name = "kategoriTextBox6";
-            this.kategoriTextBox6.Size = new System.Drawing.Size(273, 26);
-            this.kategoriTextBox6.TabIndex = 14;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 454);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(85, 20);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Kategoriler";
             // 
             // pomodoroFrom
             // 
