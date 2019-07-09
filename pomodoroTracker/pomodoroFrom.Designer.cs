@@ -123,7 +123,7 @@
             // 
             this.zamanLabel.AutoSize = true;
             this.zamanLabel.Font = new System.Drawing.Font("Ebrima", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zamanLabel.Location = new System.Drawing.Point(8, 85);
+            this.zamanLabel.Location = new System.Drawing.Point(8, 77);
             this.zamanLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.zamanLabel.Name = "zamanLabel";
             this.zamanLabel.Size = new System.Drawing.Size(394, 86);
@@ -512,7 +512,7 @@
             // 
             this.totalLabel.AutoSize = true;
             this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.totalLabel.Location = new System.Drawing.Point(129, 214);
+            this.totalLabel.Location = new System.Drawing.Point(129, 212);
             this.totalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(64, 13);
@@ -523,7 +523,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label8.Location = new System.Drawing.Point(8, 214);
+            this.label8.Location = new System.Drawing.Point(8, 212);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(122, 13);
@@ -534,7 +534,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.label9.Location = new System.Drawing.Point(8, 201);
+            this.label9.Location = new System.Drawing.Point(8, 191);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(123, 13);
@@ -545,12 +545,12 @@
             // 
             this.domatesLabel.AutoSize = true;
             this.domatesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.domatesLabel.Location = new System.Drawing.Point(129, 202);
+            this.domatesLabel.Location = new System.Drawing.Point(129, 192);
             this.domatesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.domatesLabel.Name = "domatesLabel";
-            this.domatesLabel.Size = new System.Drawing.Size(64, 13);
+            this.domatesLabel.Size = new System.Drawing.Size(73, 13);
             this.domatesLabel.TabIndex = 6;
-            this.domatesLabel.Text = "toplamLabel";
+            this.domatesLabel.Text = "domatesLabel";
             // 
             // fileToImportButton
             // 

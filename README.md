@@ -15,10 +15,13 @@ Not: Şimdilik sadece Ubuntu 18.04 üzerine test edilmiştir.
 - Mono-Project ve Libcurl 
 
 `$ sudo apt install libcurl4-openssl-dev mono-complete ca-certificates-mono`
+`$ sudo apt install libcanberra-gtk-module libcanberra-gtk3-module`
 
 Tüm Mono-Project'i değil sadece çalıştırabilecek kadarını indirmek isterseniz
 
 `$ sudo apt install libcurl4-openssl-dev ca-certificates-mono libmono-accessibility4.0-cil libmono-addins-gui0.2-cil libmono-addins0.2-cil libmono-cairo4.0-cil libmono-corlib4.5-cil libmono-data-tds4.0-cil libmono-i18n-west4.0-cil libmono-i18n4.0-cil libmono-ldap4.0-cil libmono-microsoft-csharp4.0-cil libmono-posix4.0-cil libmono-security4.0-cil libmono-sharpzip4.84-cil libmono-sqlite4.0-cil libmono-system-componentmodel-dataannotations4.0-cil libmono-system-configuration4.0-cil libmono-system-core4.0-cil libmono-system-data4.0-cil libmono-system-design4.0-cil libmono-system-drawing4.0-cil libmono-system-enterpriseservices4.0-cil libmono-system-ldap4.0-cil libmono-system-net-http-webrequest4.0-cil libmono-system-net-http4.0-cil libmono-system-numerics4.0-cil libmono-system-runtime-serialization-formatters-soap4.0-cil libmono-system-runtime-serialization4.0-cil libmono-system-security4.0-cil libmono-system-servicemodel-internals0.0-cil libmono-system-transactions4.0-cil libmono-system-web-applicationservices4.0-cil libmono-system-web-services4.0-cil libmono-system-web4.0-cil libmono-system-windows-forms4.0-cil libmono-system-xml-linq4.0-cil libmono-system-xml4.0-cil libmono-system4.0-cil libmono-webbrowser4.0-cil libmono-zeroconf1.0-cil mono-4.0-gac mono-gac mono-runtime mono-runtime-common mono-runtime-sgen`
+
+`$ sudo apt install libcanberra-gtk-module libcanberra-gtk3-module`
 
 Bu yöntem denenmedi ancak geri dönüşlere her zaman açığım (:
 

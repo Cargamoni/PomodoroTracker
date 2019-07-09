@@ -20,21 +20,26 @@ namespace pomodoroTracker
         int durumZaman = 0;
         bool isBreak = false;
         bool isLongBreak = false;
+        bool miniSize = false;
         public pomodoroFrom()
         {
             //ilk açılıştaki varsayılan değerleri girmeyi sağlar.
             InitializeComponent();
             timer1 = new System.Windows.Forms.Timer();
             timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = 1;
+            timer1.Interval = 1000;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            duzenleme();
             int screenHeight = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height.ToString());
-            if (screenHeight < this.Height + 30)
+            if (screenHeight < this.Height + 3000)
+            {
                 this.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
+                miniSize = true;
+            }
+
+            duzenleme();
 
             //DATASET BURADAYDI
             datasetToLists("daily");
@@ -67,7 +72,7 @@ namespace pomodoroTracker
             buttonRestart.Location = new Point(buttonReset.Location.X + buttonSize + 2, buttonReset.Location.Y);
 
             //Gerisayım Yerleştirme
-            zamanLabel.Location = new Point(this.Width / 2 - zamanLabel.Width / 2, zamanLabel.Location.Y);
+            zamanLabel.Location = new Point(pomodoroBox.Width / 2 - zamanLabel.Width / 2, pomodoroBox.Height / 2 - zamanLabel.Height / 2);
 
             //Yapilacak ve Yapılmış Yerleştirme
             yapilacakBox.Width = this.Width / 2 - 25;
@@ -82,6 +87,34 @@ namespace pomodoroTracker
             yapilacakList.Width = yapilacakBox.Width - 10;
             yapilmisList.Width = yapilmisBox.Width - 10;
 
+            //Eğer ekran boyutu küçük ise
+            if(miniSize)
+            {
+                //Mini Zaman Label Pozisyonu
+                zamanLabel.Location = new Point(pomodoroBox.Width / 2 - zamanLabel.Width  / 2, pomodoroBox.Height / 2 - zamanLabel.Height / 2);
+
+                //Yapilacak ve Yapılmış Boy Düzenleme
+                this.Height += 10;
+                tabControl1.Height += 10;
+                yapilacakBox.Height += 10;
+                yapilmisBox.Height += 10;
+                yapilmisBox.Width += 10;
+                yapilmisList.Width += 10;
+                yapilmisSil.Width += 10;
+                yapilmisSil.Location = new Point(yapilmisSil.Location.X, yapilmisSil.Location.Y + 10);
+                yapilacakEkle.Location = new Point(yapilacakEkle.Location.X, yapilacakEkle.Location.Y + 10);
+                textBox1.Location = new Point(textBox1.Location.X, textBox1.Location.Y + 10);
+                yapilacakList.Height = (textBox1.Location.Y - yapilacakList.Location.Y) + 10;
+                yapilmisList.Height = (textBox1.Location.Y - yapilacakList.Location.Y) + 10;
+
+                //Yapılacak Ekleme Button Boyut ve Font
+                yapilacakEkle.Location = new Point(yapilacakEkle.Location.X, yapilacakEkle.Location.Y - 1);
+                textBox1.Font = this.Font;
+
+                //Toplam zaman ve Domates Sayacı
+                domatesLabel.Location = new Point(label9.Width + 10, domatesLabel.Location.Y);
+                totalLabel.Location = new Point(label8.Width + 10, totalLabel.Location.Y);
+            }
 
             // Combobox İçi Doldurma
             if (comboBox1.Items.Count == 0)
