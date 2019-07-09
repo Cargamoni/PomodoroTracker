@@ -72,6 +72,11 @@
             this.exportButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.totalLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.domatesLabel = new System.Windows.Forms.Label();
+            this.fileToImportButton = new System.Windows.Forms.Button();
             this.pomodoroBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -85,10 +90,14 @@
             // 
             // pomodoroBox
             // 
+            this.pomodoroBox.Controls.Add(this.domatesLabel);
+            this.pomodoroBox.Controls.Add(this.label9);
             this.pomodoroBox.Controls.Add(this.buttonRestart);
             this.pomodoroBox.Controls.Add(this.zamanLabel);
             this.pomodoroBox.Controls.Add(this.buttonReset);
             this.pomodoroBox.Controls.Add(this.buttonStart);
+            this.pomodoroBox.Controls.Add(this.label8);
+            this.pomodoroBox.Controls.Add(this.totalLabel);
             this.pomodoroBox.Controls.Add(this.hizliLabel);
             this.pomodoroBox.Location = new System.Drawing.Point(4, 5);
             this.pomodoroBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -445,6 +454,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.fileToImportButton);
             this.tabPage3.Controls.Add(this.dataGridView1);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.importButton);
@@ -468,7 +478,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(250, 33);
+            this.label6.Location = new System.Drawing.Point(250, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(534, 20);
             this.label6.TabIndex = 2;
@@ -497,6 +507,60 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // totalLabel
+            // 
+            this.totalLabel.AutoSize = true;
+            this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.totalLabel.Location = new System.Drawing.Point(129, 214);
+            this.totalLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(64, 13);
+            this.totalLabel.TabIndex = 0;
+            this.totalLabel.Text = "toplamLabel";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label8.Location = new System.Drawing.Point(8, 214);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(122, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Toplam çalışılan zaman :";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.label9.Location = new System.Drawing.Point(8, 201);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(123, 13);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "Sepetindeki domatesler :";
+            // 
+            // domatesLabel
+            // 
+            this.domatesLabel.AutoSize = true;
+            this.domatesLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.domatesLabel.Location = new System.Drawing.Point(129, 202);
+            this.domatesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.domatesLabel.Name = "domatesLabel";
+            this.domatesLabel.Size = new System.Drawing.Size(64, 13);
+            this.domatesLabel.TabIndex = 6;
+            this.domatesLabel.Text = "toplamLabel";
+            // 
+            // fileToImportButton
+            // 
+            this.fileToImportButton.Location = new System.Drawing.Point(228, 48);
+            this.fileToImportButton.Name = "fileToImportButton";
+            this.fileToImportButton.Size = new System.Drawing.Size(214, 35);
+            this.fileToImportButton.TabIndex = 4;
+            this.fileToImportButton.Text = "Dosyadan İçe Aktar";
+            this.fileToImportButton.UseVisualStyleBackColor = true;
+            this.fileToImportButton.Click += new System.EventHandler(this.fileToImportButton_Click);
             // 
             // pomodoroFrom
             // 
@@ -576,6 +640,11 @@
         private System.Windows.Forms.TextBox kategoriTextBox6;
         private System.Windows.Forms.Button kategoriEkle;
         private System.Windows.Forms.ComboBox kategoriComboBox2;
+        private System.Windows.Forms.Label totalLabel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label domatesLabel;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button fileToImportButton;
     }
 }
 

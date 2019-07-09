@@ -26,7 +26,7 @@ namespace pomodoroTracker
             InitializeComponent();
             timer1 = new System.Windows.Forms.Timer();
             timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Interval = 1000;
+            timer1.Interval = 1;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,28 +35,9 @@ namespace pomodoroTracker
             int screenHeight = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height.ToString());
             if (screenHeight < this.Height + 30)
                 this.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
-            DataSet dt = new DataSet();
-            dt = ayarlar.newImport();
 
-            if (dt != null)
-            {
-                foreach (DataColumn column in dt.Tables[0].Columns)
-                    dataGridView1.Columns.Add("column1", column.ColumnName);
-
-                ayarlar.newImportedData = new string[dt.Tables[0].Rows.Count, dt.Tables[0].Columns.Count];
-
-                for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
-                {
-                    DataGridViewRow testRow = (DataGridViewRow)dataGridView1.Rows[i].Clone();
-                    for (int j = 0; j <= dt.Tables[0].Columns.Count - 1; j++)
-                    {
-                        testRow.Cells[j].Value = dt.Tables[0].Rows[i][j];
-                        ayarlar.newImportedData[i,j] = dt.Tables[0].Rows[i][j].ToString();      //Breakpoint koyulacak.
-                    }
-                    dataGridView1.Rows.Add(testRow);
-                }
-                arrayToImport();
-            }
+            //DATASET BURADAYDI
+            datasetToLists("daily");
 
             kategoriToImport();
         }
@@ -68,7 +49,8 @@ namespace pomodoroTracker
             zamanLabel.Text = ayarlar.pomodoroTime.ToString() + ":00";
             kalanZaman = ayarlar.pomodoroTime * 60;
             durumZaman = kalanZaman;
-
+            domatesLabel.Text = ayarlar.totalPomodoro.ToString();
+            totalZamanDuzenleyici();
             //Alarm seslerinin ayarlanması
             //string path = AppDomain.CurrentDomain.BaseDirectory;
             //System.Windows.Forms.MessageBox.Show(path);
@@ -114,10 +96,56 @@ namespace pomodoroTracker
                 comboBox1.SelectedIndex = 0;
             }
 
-            pomodoroReset();
+            //pomodoroReset();
         }
         #endregion
         #region Genel Fonksiyonlar
+
+        public void datasetToLists(string option)
+        {
+            DataSet dt = new DataSet();
+            if (option == "daily")
+                dt = ayarlar.newImport();
+            else
+                dt = ayarlar.newFileImport(option);
+
+            if (dt != null)
+            {
+                foreach (DataColumn column in dt.Tables[0].Columns)
+                    dataGridView1.Columns.Add("column1", column.ColumnName);
+
+                ayarlar.newImportedData = new string[dt.Tables[0].Rows.Count, dt.Tables[0].Columns.Count];
+
+                for (int i = 0; i <= dt.Tables[0].Rows.Count - 1; i++)
+                {
+                    DataGridViewRow testRow = (DataGridViewRow)dataGridView1.Rows[i].Clone();
+                    for (int j = 0; j <= dt.Tables[0].Columns.Count - 1; j++)
+                    {
+                        testRow.Cells[j].Value = dt.Tables[0].Rows[i][j];
+                        ayarlar.newImportedData[i, j] = dt.Tables[0].Rows[i][j].ToString();      //Breakpoint koyulacak.
+                    }
+                    dataGridView1.Rows.Add(testRow);
+                }
+                arrayToImport();
+                dt.Dispose();
+                System.GC.SuppressFinalize(dt);
+            }
+        }
+
+        //Toplam Çalışılan Zaman
+        public void totalZamanDuzenleyici()
+        {
+            int secs = ayarlar.totalWorkTime;
+            TimeSpan t = TimeSpan.FromSeconds(secs);
+            string answer = string.Format("{0:D2} h : {1:D2} m : {2:D2} s",    //:{3:D3}ms
+                            t.Hours,
+                            t.Minutes,
+                            t.Seconds
+                            //t.Milliseconds
+                            );
+            //return answer;
+            totalLabel.Text = answer;
+        }
         //Zamanlayıcı çalışıysa durdurur, çalışmıyorsa başlatır.
         public void timerStarter()
         {
@@ -146,7 +174,15 @@ namespace pomodoroTracker
         // O anki ayarlar neyse ona göre kalan zamanı ve pomodoroyu sıfırlar
         public void pomodoroReset()
         {
-            ayarlar.pomodoroCounter = 1;
+            if(textBox5.Text.Length != 0)
+            {
+                ayarlar.pomodoroCounter = Convert.ToInt32(textBox5.Text) > 4 ? 4 : Convert.ToInt32(textBox5.Text);
+                textBox5.Text = "1";
+            }
+            else
+            {
+                ayarlar.pomodoroCounter = 1;
+            }
             kalanZaman = ayarlar.pomodoroTime * 60;
             durumZaman = kalanZaman;
             isBreak = false;
@@ -164,6 +200,7 @@ namespace pomodoroTracker
                 pomodoroReset();
                 isLongBreak = !isLongBreak;
                 alarmSesi.Play();
+                domatesLabel.Text = ayarlar.totalPomodoro.ToString();
                 //MessageBox.Show(ayarlar.totalPomodoro.ToString() + ". Uzun aran bitti hadi bakalım iş başına !", "Çalışma Zamanı", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (isBreak && ayarlar.pomodoroCounter < 4)              // Eğer aradaysa ve 4. pomodoroda değilse tracker'ı break'a ayarlar
@@ -281,7 +318,6 @@ namespace pomodoroTracker
         //Yeni Import Yöntemi ile listeleri yükleme
         public bool arrayToImport()
         {
-            ayarlar.newImport();
             if (ayarlar.newImportedData != null && ayarlar.newImportedData.Length != 0)
             {
                 if (ayarlar.newImportedData.Length != 0)
@@ -444,6 +480,11 @@ namespace pomodoroTracker
             //Saat çalışma eylemi aynı zamanda break ve trackPomodoro triggerlar
             kalanZaman--;
             zamanLabel.Text = kalanZaman / 60 + ":" + ((kalanZaman % 60) >= 10 ? (kalanZaman % 60).ToString() : "0" + (kalanZaman % 60));
+            if (isBreak == false && isBreak == false)
+            {
+                ayarlar.totalWorkTime++;
+                totalZamanDuzenleyici();
+            }
             if (kalanZaman <= 0)
             {
                 timer1.Enabled = false;
@@ -536,6 +577,7 @@ namespace pomodoroTracker
 
         private void button4_Click(object sender, EventArgs e)      //Import button
         {
+            ayarlar.newImport();
             arrayToImport();
         }
 
@@ -552,6 +594,24 @@ namespace pomodoroTracker
                 kategoriToExport(kategoriTextBox6.Text);
                 kategoriToImport();
                 kategoriTextBox6.Clear();
+            }
+        }
+
+        private void fileToImportButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog file = new OpenFileDialog();
+            file.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+            file.Filter = "XML Files (*.xml)|*.xml";
+            file.FilterIndex = 0;
+            file.DefaultExt = "xml";
+
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                string selectedFileName = file.FileName;
+                ayarlar.newFileImport(selectedFileName);
+                datasetToLists(selectedFileName);
+                //arrayToImport();
+
             }
         }
     }

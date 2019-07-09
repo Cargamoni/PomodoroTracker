@@ -17,6 +17,7 @@ namespace pomodoroTracker
         public int longBreakTime;
         public int pomodoroCounter;
         public int totalPomodoro;
+        public int totalWorkTime;
         public string breakAlarm;
         public string[,] newImportedData;
         public string[,] newExportedData;
@@ -29,6 +30,7 @@ namespace pomodoroTracker
             longBreakTime = 30;
             pomodoroCounter = 1;
             totalPomodoro = 0;
+            totalWorkTime = 0;
             OperatingSystem osName = System.Environment.OSVersion;
             operatingSystem = osName.VersionString.Split(' ')[0];
             if (operatingSystem == "Windows")
@@ -41,8 +43,8 @@ namespace pomodoroTracker
         #region Old Export
         //public void exportData(string[] data)
         //{
-        //    string xmlTableName = DateTime.Today.ToShortDateString();
-        //    xmlTableName = xmlTableName.Replace("/", ".");
+        //    string xmlTableName = DateTime.Today.ToString("MMddyyyy");
+        //    
 
 
         //    //         <? xml version = "1.0" standalone = "yes" ?>
@@ -125,8 +127,8 @@ namespace pomodoroTracker
         #region Old Import
         //public void importData()
         //{
-        //    string xmlTableName = DateTime.Today.ToShortDateString();
-        //    xmlTableName = xmlTableName.Replace("/", ".");
+        //    string xmlTableName = DateTime.Today.ToString("MMddyyyy");
+        //    
         //    if (File.Exists("data-" + xmlTableName + ".xml"))
         //    {
         //        XmlDocument doc = new XmlDocument();
@@ -193,8 +195,8 @@ namespace pomodoroTracker
         #region adoptExportData
         //public void adoptExportData(string tarih, string[] data)
         //{ 
-        //    string xmlTableName = DateTime.Today.ToShortDateString();
-        //    xmlTableName = xmlTableName.Replace("/", ".");
+        //    string xmlTableName = DateTime.Today.ToString("MMddyyyy");
+        //    
 
         //    if (!File.Exists("data-" + xmlTableName + ".xml"))
         //    {
@@ -243,14 +245,26 @@ namespace pomodoroTracker
 
         public DataSet newImport()
         {
-            string xmlTableName = DateTime.Today.ToShortDateString();
-            xmlTableName = xmlTableName.Replace("/", ".");
+            string xmlTableName = DateTime.Today.ToString("MMddyyyy");
+            
+            xmlTableName = "date-" + xmlTableName + "-data";
             //if (File.Exists("data-" + xmlTableName + ".xml"))
-            if (File.Exists("dataTest.xml"))
+            if (File.Exists(xmlTableName + ".xml"))
             {
                 DataSet newData = new DataSet();
                 //newData.ReadXml("data-" + xmlTableName + ".xml");
-                newData.ReadXml("dataTest.xml");
+                newData.ReadXml(xmlTableName + ".xml");
+                return newData;
+            }
+            return null;
+        }
+
+        public DataSet newFileImport(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                DataSet newData = new DataSet();
+                newData.ReadXml(fileName);
                 return newData;
             }
             return null;
@@ -259,8 +273,8 @@ namespace pomodoroTracker
         public void newExport()
         {
             DataSet newData = new DataSet();
-            string xmlTableName = DateTime.Today.ToShortDateString();
-            xmlTableName = xmlTableName.Replace("/", ".");
+            string xmlTableName = DateTime.Today.ToString("MMddyyyy");
+            
             xmlTableName = "date-" + xmlTableName + "-data";
             newData.DataSetName = xmlTableName;
             //if (!File.Exists("dataTest.xml"))
@@ -292,7 +306,7 @@ namespace pomodoroTracker
                     //System.GC.SuppressFinalize(row);
                 }
 
-            newData.WriteXml("dataTest.xml");
+            newData.WriteXml(xmlTableName + ".xml");
             //}
             //else
             //{
@@ -322,7 +336,7 @@ namespace pomodoroTracker
         public void kategoriExport()
         {
             DataSet newData = new DataSet();
-            string xmlTableName = DateTime.Today.ToShortDateString();
+            string xmlTableName = DateTime.Today.ToString("MMddyyyy");
             newData.DataSetName = "kategoriSettings";
 
             newData.Tables.Add("genelVeri");
