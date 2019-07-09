@@ -33,7 +33,7 @@ namespace pomodoroTracker
         private void Form1_Load(object sender, EventArgs e)
         {
             int screenHeight = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height.ToString());
-            if (screenHeight < this.Height + 3000)
+            if (screenHeight < this.Height + 30)
             {
                 this.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Regular);
                 miniSize = true;
