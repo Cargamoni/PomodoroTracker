@@ -59,4 +59,6 @@ GNU/Linux işletim sistemi yüklemeleri yaptırdıktan sonra;
 		
 		. `$ mono pomodoroTracker.exe` komutunu çalıştırın.
 		
-		
+* NOT: GNU/Linux işletim sistemlerinde eğer alarm seslerini çalarken program kapanıyorsa program yetkilerini düzenlemeniz gerekebilir, problemi daha tespit edemedim ancak Mono compile ederken sounds içerisine giremiyor diye tahmin ediyorum. Programı kullanabilmek için yetkilendirmeyi aşağıdaki gibi ayarlayabilirsiniz.
+
+	. `$ chmod 777 pomodoroTracker.exe`
